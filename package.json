@@ -1,0 +1,24 @@
+{
+  "name": "omni-chrome-extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "omni.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meleez/omni-chrome-extension.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meleez/omni-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/meleez/omni-chrome-extension#readme",
+  "devDependencies": {
+    "eslint": "^2.5.3",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.2.3"
+  }
+}
