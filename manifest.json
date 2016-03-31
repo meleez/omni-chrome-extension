@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "OmniChrome",
+  "description": "An extensible launcher for Chrome to improve your workflow.",
+  "version": "0.0",
+  "permissions": [],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png"
+  },
+  "web_accessible_resources": [],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
