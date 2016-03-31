@@ -32,7 +32,6 @@ document.body.appendChild(div);
 
 
 window.addEventListener('keypress', e => {
-  e.preventDefault();
   if (e.keyCode === 2 && e.ctrlKey) {
     toggleVisibility();
   }
