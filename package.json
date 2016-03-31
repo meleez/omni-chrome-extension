@@ -4,8 +4,8 @@
   "description": "",
   "main": "omni.js",
   "scripts": {
-    "build": "gulp build",
-    "start-dev": "gulp",
+    "build": "./node_modules/.bin/gulp build",
+    "start-dev": "./node_modules/.bin/gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
