@@ -40,7 +40,6 @@ window.addEventListener('keypress', e => {
 
 let visible = false;
 function toggleVisibility() {
-  console.log(visible);
   visible ? ReactDOM.unmountComponentAtNode(div) : ReactDOM.render(<Main />, div);
   visible = !visible;
 }
