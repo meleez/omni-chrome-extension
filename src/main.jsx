@@ -4,8 +4,10 @@ const View = require('./view');
 
 // to remove: search image package
 const searchImagePackage = require('../examples/search-image/main');
+const cdnPackage = require('../examples/cdn/main');
 const packages = {
   i: searchImagePackage,
+  cdn: cdnPackage,
 };
 
 
