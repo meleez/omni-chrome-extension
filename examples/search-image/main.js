@@ -1,19 +1,11 @@
-const Omni = require('./../../src/omni');
-const omni = new Omni();
+module.exports = function searchImage(omni, query) {
+  omni.removeItems();
+  omni.addItems(
+    { title: query, link: imgLink(query), subtitle: `Search Google images for ${query}` }
+  );
+  omni.sendFeedback();
+};
 
-function start() {
-  let input = omni.args[0]
-
-  omni.add_item({
-    title: `Search ${input}`,
-    arg: `https://www.google.com/search?q=${input}&tbm=isch`
-  });
-
-  omni.send_feedback();
-
+function imgLink(query) {
+  return `https://www.google.com/search?tbm=isch&q=${query}`;
 }
-
-omni.run(start);
-
-module.exports = omni;
-
