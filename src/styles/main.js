@@ -12,4 +12,8 @@ module.exports = {
   input: {
     width: '200px',
   },
+
+  item: {
+    backgroundColor: 'white',
+  },
 };
