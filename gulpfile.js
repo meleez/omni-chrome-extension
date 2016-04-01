@@ -51,6 +51,7 @@ function buildScript(file, watch) {
     transform: [
       ['babelify', { presets: ['es2015', 'react'] }],
     ],
+    extensions: ['.jsx', '.js'],
   };
 
   var bundler;
