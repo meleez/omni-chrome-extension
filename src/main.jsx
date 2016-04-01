@@ -104,13 +104,10 @@ document.body.appendChild(div);
 
 window.addEventListener('keypress', e => {
   
-  if (e.keyCode === 13 && e.ctrlKey) {
+  if (e.keyCode === 2 && e.ctrlKey) {
     toggleVisibility();
   }
 });
-
-// todo remove
-toggleVisibility();
 
 let visible = false;
 function toggleVisibility() {
