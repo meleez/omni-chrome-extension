@@ -15,5 +15,6 @@ module.exports = {
 
   item: {
     backgroundColor: 'white',
+    listStyleType: 'none',
   },
 };

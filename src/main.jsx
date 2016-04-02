@@ -51,6 +51,9 @@ class Omni {
   onInputChange(keyword, query) {
     if (keyword in packages) {
       packages[keyword](this, query);
+    } else {
+      this.removeItems();
+      this.sendFeedback();
     }
   }
 
