@@ -21,6 +21,7 @@ class Omni {
 
     window.addEventListener('keypress', e => {
       // if ctrl-B is pressed
+      // can remove, has hotkey to activate app
       if (e.keyCode === 2 && e.ctrlKey) {
         this.toggleVisibility();
       }

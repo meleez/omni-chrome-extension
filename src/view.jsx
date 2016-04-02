@@ -16,6 +16,10 @@ class View extends React.Component {
     this.props.onInputChange(keyword, query);
   }
 
+  componentDidMount() {
+    React.findDOMNode(this.refs.nameInput).focus();
+  }
+
   onInputKeyPress(event) {
     let active = this.state.active;
     if (event.keyCode === 38) { // up arrow
