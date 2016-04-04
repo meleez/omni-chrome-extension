@@ -1,3 +1,4 @@
+echo Running pre-commit hook.
 npm run lint
 if [ $? != '0' ]; then
   exit 1
