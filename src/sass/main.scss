@@ -1,0 +1,76 @@
+#omni-chrome-container {
+  position: fixed;
+  top: 80px;
+  max-width: 500px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 9999;
+  font-family: "Open Sans", Raleway, Arial, Helvetica;
+  font-size: 16px;
+  font-weight: normal;
+  color: black;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    &:visited {
+      color: inherit;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .main-pane {
+    background-color: rgba(255, 255, 255, .9);
+    border: 5px solid rgba(0, 0, 0, .5);
+    border-radius: 8px;
+    padding: 15px 3%;
+  }
+
+  #omni-chrome-input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 0 2px #ccc;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: inherit;
+    &:focus {
+      border-color: #66afe9;
+      outline: 0;
+      box-shadow: inset 0 0 3px #ddd, 0 0 8px rgba(102,175,233,.6);
+    }
+  }
+
+  .item {
+    list-style-type: none;
+    position: relative;
+    padding: 4px;
+    padding-bottom: 8px;
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, rgba(255, 255, 255, .9), #ccc, rgba(255, 255, 255, .9));
+      bottom: 0;
+      left: 0;
+    }
+    h4 {
+      margin: 5px 0;
+      font-weight: bold;
+      font-size: inherit;
+    }
+    .subtitle {
+      font-size: 12px;
+      color: #666;
+    }
+  }
+}

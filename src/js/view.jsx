@@ -1,6 +1,6 @@
 const React = require('react');
 const Item = require('./item');
-const style = require('./styles/main');
+// const style = require('./styles/main');
 
 class View extends React.Component {
   constructor(props) {
@@ -51,12 +51,15 @@ class View extends React.Component {
     );
 
     return (
-      <div style={style.container}>
-        <input
-          id="omni-chrome-input" type="text" style={style.input} autoFocus
-          onChange={this.onInputChange} onKeyDown={this.onInputKeyPress} ref="omniChromeInput"
-        />
-        { items }
+      <div id="omni-chrome-container">
+        <link href={chrome.extension.getURL('style.css')} />
+        <div className="main-pane">
+          <input
+            id="omni-chrome-input" type="text" autoFocus ref="omniChromeInput"
+            onChange={this.onInputChange} onKeyDown={this.onInputKeyPress}
+          />
+          { items }
+        </div>
         <div type="hidden" ref="copyField" />
       </div>
     );

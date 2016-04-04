@@ -1,8 +1,10 @@
 module.exports = function searchImage(omni, query) {
   omni.removeItems();
-  omni.addItems(
-    { title: query, link: imgLink(query), subtitle: `Search Google images for ${query}` }
-  );
+  if (query) {
+    omni.addItems(
+      { title: query, link: imgLink(query), subtitle: `Search Google images for "${query}".` }
+    );
+  }
   omni.sendFeedback();
 };
 
