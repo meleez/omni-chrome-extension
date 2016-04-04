@@ -4,6 +4,7 @@ const React = require('react');
 class Item extends React.Component {
 
   constructor(props) {
+    
     super(props);
     this.select = this.select.bind(this);
   }
