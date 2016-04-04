@@ -59,7 +59,10 @@ class Omni {
 
   render() {
     ReactDOM.render(
-      <View items={this.items} onInputChange={this.onInputChange.bind(this)} />,
+      <View
+        items={this.items} onInputChange={this.onInputChange.bind(this)}
+        toggleVisibility={this.toggleVisibility.bind(this)}
+      />,
       this.div
     );
   }
