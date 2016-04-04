@@ -1,4 +1,8 @@
 module.exports = {
+  link: {
+    cursor: 'pointer',
+  },
+
   container: {
     position: 'fixed',
     top: '100px',

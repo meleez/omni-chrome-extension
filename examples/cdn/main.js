@@ -10,7 +10,8 @@ module.exports = function start(omni, query) {
       for (let i = 0; i < Math.min(results.length, 15); i++) {
         omni.addItems({
           title: results[i].name,
-          link: results[i].latest,
+          subtitle: results[i].latest,
+          clipboard: results[i].latest,
         });
       }
       omni.sendFeedback();
