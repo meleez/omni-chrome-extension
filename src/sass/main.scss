@@ -1,7 +1,6 @@
 #omni-chrome-container {
   position: fixed;
   top: 80px;
-  max-width: 500px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -10,6 +9,20 @@
   font-size: 16px;
   font-weight: normal;
   color: black;
+
+  max-width: 250px;
+  @media (min-width: 400px) {
+    max-width: 350px;
+  }
+  @media (min-width: 600px) {
+    max-width: 500px;
+  }
+  @media (min-width: 800px) {
+    max-width: 600px;
+  }
+  @media (min-width: 1000px) {
+    max-width: 700px;
+  }
 
   * {
     box-sizing: border-box;
