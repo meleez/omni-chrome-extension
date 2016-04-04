@@ -6,7 +6,8 @@
     "mocha": true
   },
   "globals": {
-    "__dirname": true
+    "__dirname": true,
+    "chrome": true
   },
   "rules": {
     "new-cap": 0,
