@@ -3,7 +3,7 @@ module.exports = function start(omni, query) {
     .then(res =>
       res.json()
     )
-    .then((body) => {
+    .then(body => {
       omni.removeItems();
       const results = body.results;
       // display up to 15 results

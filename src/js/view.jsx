@@ -18,9 +18,13 @@ class View extends React.Component {
   }
 
   onInputKeyPress(event) {
+    console.log(event.keyCode);
     let active = this.state.active;
     if (event.keyCode === 13) { // enter
       return this.select(active);
+    }
+    if (event.keyCode === 27) { // esc
+      return this.props.toggleVisibility();
     }
     if (event.keyCode === 38) { // up arrow
       active = Math.max(0, active - 1);

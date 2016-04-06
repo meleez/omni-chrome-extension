@@ -41,16 +41,15 @@
   }
 
   .main-pane {
-    background-color: rgba(255, 255, 255, .9);
-    border: 5px solid rgba(0, 0, 0, .5);
-    border-radius: 8px;
+    box-sizing: content-box;
+    background-color: rgba(255, 255, 255, .92);
+    outline: 8px solid rgba(0, 0, 0, .5);
     padding: 15px 3%;
   }
 
   #omni-chrome-input {
     width: 100%;
     border: 1px solid #ccc;
-    border-radius: 5px;
     box-shadow: inset 0 0 2px #ccc;
     padding: 8px;
     margin-bottom: 10px;
@@ -77,6 +76,7 @@
       left: 0;
     }
     h4 {
+      display: block;
       margin: 5px 0;
       font-weight: bold;
       font-size: inherit;
