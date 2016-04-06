@@ -4,9 +4,9 @@
   "description": "",
   "main": "omni.js",
   "scripts": {
-    "build": "./node_modules/.bin/gulp build",
-    "start": "./node_modules/.bin/gulp",
-    "lint": "eslint src/*.jsx && eslint src/*.js",
+    "build": "gulp build",
+    "start": "./hooks/create.sh && gulp",
+    "lint": "eslint src/js/*.jsx && eslint src/js/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

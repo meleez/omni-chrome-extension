@@ -20,9 +20,9 @@ gulp.task('sass-dev', () => {
       browsers: ['last 2 Chrome versions'],
       cascade: false
     }))
-    .pipe(rename('bundle.css'))
+    .pipe(rename('style.css'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('public/build/'));
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('sass-watch', () => {
@@ -36,8 +36,8 @@ gulp.task('sass', () => {
       browsers: ['last 2 Chrome versions'],
       cascade: false
     }))
-    .pipe(rename('bundle.css'))
-    .pipe(gulp.dest('public/build/'));
+    .pipe(rename('style.css'))
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('script-dev', () => buildScript('main.jsx', true));
@@ -46,7 +46,7 @@ gulp.task('script', () => buildScript('main.jsx', false));
 function buildScript(file, watch) {
 
   var props = {
-    entries: ['src/' + file],
+    entries: ['src/js/' + file],
     debug: watch,
     transform: [
       ['babelify', { presets: ['es2015', 'react'] }],

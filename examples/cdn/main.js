@@ -3,14 +3,15 @@ module.exports = function start(omni, query) {
     .then(res =>
       res.json()
     )
-    .then((body) => {
+    .then(body => {
       omni.removeItems();
       const results = body.results;
       // display up to 15 results
-      for (let i = 0; i < Math.min(results.length, 15); i++) {
+      for (let i = 0; i < Math.min(results.length, 10); i++) {
         omni.addItems({
           title: results[i].name,
-          link: results[i].latest,
+          subtitle: results[i].latest,
+          clipboard: results[i].latest,
         });
       }
       omni.sendFeedback();

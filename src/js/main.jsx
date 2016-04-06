@@ -3,8 +3,8 @@ const ReactDOM = require('react-dom');
 const View = require('./view');
 
 // to remove: search image package
-const searchImagePackage = require('../examples/search-image/main');
-const cdnPackage = require('../examples/cdn/main');
+const searchImagePackage = require('../../examples/search-image/main');
+const cdnPackage = require('../../examples/cdn/main');
 const packages = {
   i: searchImagePackage,
   cdn: cdnPackage,
@@ -60,7 +60,10 @@ class Omni {
 
   render() {
     ReactDOM.render(
-      <View items={this.items} onInputChange={this.onInputChange.bind(this)} />,
+      <View
+        items={this.items} onInputChange={this.onInputChange.bind(this)}
+        toggleVisibility={this.toggleVisibility.bind(this)}
+      />,
       this.div
     );
   }
