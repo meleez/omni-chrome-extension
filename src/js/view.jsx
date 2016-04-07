@@ -13,12 +13,11 @@ class View extends React.Component {
 
   onInputChange(event) {
     const input = event.target.value.split(' ');
-    const [keyword, query] = input;
+    const [keyword, ...query] = input;
     this.props.onInputChange(keyword, query);
   }
 
   onInputKeyPress(event) {
-    console.log(event.keyCode);
     let active = this.state.active;
     if (event.keyCode === 13) { // enter
       return this.select(active);

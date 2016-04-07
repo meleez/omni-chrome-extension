@@ -2,12 +2,10 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const View = require('./view');
 
-// to remove: search image package
-const searchImagePackage = require('../../examples/search-image/main');
-const cdnPackage = require('../../examples/cdn/main');
 const packages = {
-  i: searchImagePackage,
-  cdn: cdnPackage,
+  i: require('../../examples/search-image'),
+  cdn: require('../../examples/cdn'),
+  dist: require('../../examples/distance-matrix'),
 };
 
 
@@ -49,7 +47,7 @@ class Omni {
   }
 
   onInputChange(keyword, query) {
-    if (keyword in packages) {
+    if (keyword in packages && query.length) {
       packages[keyword](this, query);
     } else {
       this.removeItems();
