@@ -42,6 +42,7 @@ gulp.task('sass', () => {
 
 gulp.task('script-dev', () => buildScript('main.jsx', true));
 gulp.task('script', () => buildScript('main.jsx', false));
+gulp.task('script-remove', () => buildRemoveScript('remove.jsx', true));
 
 function buildScript(file, watch) {
 
@@ -68,6 +69,45 @@ function buildScript(file, watch) {
     return stream
       .on('error', handleErrors)
       .pipe(source('content.js'))
+      .pipe(gulp.dest('./'));
+  }
+
+  bundler.on('update', function() {
+    var now = new Date;
+    var updateStart = now.valueOf();
+    var time = '\033[37m' + `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}` + '\033[0m';
+    rebundle();
+    console.log('[' + time + '] \033[32m[watchify] Updated!', (Date.now() - updateStart) + 'ms\033[0m');
+  });
+
+  // run it once the first time buildScript is called
+  return rebundle();
+}
+
+function buildRemoveScript(file, watch) {
+  var props = {
+    entries: ['src/js/' + file],
+    debug: watch,
+    transform: [
+      ['babelify', { presets: ['es2015', 'react'] }],
+    ],
+    extensions: ['.jsx', '.js'],
+  };
+
+  var bundler;
+  if (watch) {
+    bundler = watchify(browserify(props));
+  } else {
+    bundler = browserify(props).transform({
+      global: true
+    }, 'uglifyify');
+  }
+
+  function rebundle(){
+    var stream = bundler.bundle();
+    return stream
+      .on('error', handleErrors)
+      .pipe(source('removeContent.js'))
       .pipe(gulp.dest('./'));
   }
 

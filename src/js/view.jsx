@@ -52,10 +52,11 @@ class View extends React.Component {
         index={i} active={this.state.active} select={this.select}
       />
     );
+    // todo: move back down
+    // <link href={chrome.extension.getURL('style.css')} />
 
     return (
       <div id="omni-chrome-container">
-        <link href={chrome.extension.getURL('style.css')} />
         <div className="main-pane">
           <input
             id="omni-chrome-input" type="text" autoFocus ref="omniChromeInput"

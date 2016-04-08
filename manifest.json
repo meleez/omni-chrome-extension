@@ -3,26 +3,24 @@
   "name": "OmniChrome",
   "description": "An extensible launcher for Chrome to improve your workflow.",
   "version": "0.0",
-  "permissions": [],
+  "permissions": [
+    "https://*/*",
+    "http://*/*",
+    "tabs",
+    "identity"
+  ],
   "icons": {
     "16": "icons/icon-16.png",
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png"
   },
+  "background" : {
+    "scripts" : ["background.js"]
+  },
   "web_accessible_resources": [
     "style.css"
   ],
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "content.js"
-      ],
-      "css": [
-        "style.css"
-      ]
-    }
-  ]
+  "browser_action" : {
+    "default_title" : "OMNI"
+  }
 }
