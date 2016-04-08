@@ -17,7 +17,7 @@ class View extends React.Component {
   }
 
   componentDidMount() {
-    React.findDOMNode(this.refs.nameInput).focus();
+    // React.findDOMNode(this.refs['omni-chrome-input']).focus();
   }
 
   onInputKeyPress(event) {

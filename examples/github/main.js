@@ -1,21 +1,12 @@
-const githubURL = 'https://github.com/login/oauth/authorize?client_id=b3b5b16b1f12a7f01567&redirect_url=http://codesmith.io';
-
 function authenticate(omni) {
-  omni.addItems({
-    title : "Authenticate with Github",
-    link: githubURL,
+  omni.addOauth({
+    oauth: "github",
+    client_secret: "a7d4c45e9dc563b07fb5e241f63c5e2f87241828",
+    client_id : "1649235ae4e380dd699c",
+    redirect_url: "http://localhost:1337?client_secret=a7d4c45e9dc563b07fb5e241f63c5e2f87241828&client_id=1649235ae4e380dd699c"
   });
   omni.sendFeedback();
 }
-
-
-
-
-
-
-
-
-
 
 
 
