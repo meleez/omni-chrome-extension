@@ -13,7 +13,7 @@ class View extends React.Component {
 
   onInputChange(event) {
     const input = event.target.value.split(' ');
-    const [keyword, query] = input;
+    const [keyword, ...query] = input;
     this.props.onInputChange(keyword, query);
   }
 
