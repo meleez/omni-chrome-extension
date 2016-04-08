@@ -11,13 +11,16 @@ function toggleState(tab) {
 }
 
 function activateOmni(tab) {
-  chrome.tabs.executeScript(tab.ib, {
+  chrome.tabs.insertCSS(tab.id, {
+    file: 'style.css'
+  })
+  chrome.tabs.executeScript(null, {
     file: 'content.js'
   });
 }
 
 function deactivateOmni(tab) {
-  chrome.tabs.executeScript(tab.ib, {
+  chrome.tabs.executeScript(null, {
     file: 'removeContent.js'
   });
 }
