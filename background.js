@@ -19,5 +19,5 @@ function activateOmni(tab) {
 function deactivateOmni(tab) {
   chrome.tabs.executeScript(tab.ib, {
     file: 'removeContent.js'
-  });  
+  });
 }
