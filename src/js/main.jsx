@@ -26,14 +26,16 @@ class Omni {
   saveCache(key, value, cb) {
     const obj = {};
     obj[key] = value;
-    chrome.storage.sync.set(obj, cb);
+
+    // use local over sync because larger size
+    chrome.storage.local.set(obj, cb);
   }
 
   getCache(key, cb) {
     // todo : prevent null from being passed in - its gets all content in storage
 
-    chrome.storage.sync.get(key, (item) => {
-      console.log(item);
+    // use local over sync because larger size
+    chrome.storage.local.get(key, (item) => {
       cb(item[key]);
     });
   }
