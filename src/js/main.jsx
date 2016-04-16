@@ -66,7 +66,7 @@ class Omni {
     if (keyword in packages && query.length) {
       packages[keyword](this, query);
     } else {
-      // this.sendFeedback();
+      this.sendFeedback();
     }
   }
 
