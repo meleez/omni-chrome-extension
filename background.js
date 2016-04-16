@@ -1,6 +1,34 @@
-console.log('ran');
+const GITHUB_REDIRECT_URI = 'http://127.0.0.1:1337/';
+const GITHUB_CLIENT_ID = '1649235ae4e380dd699c';
+const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URI}`;
+
 // listen for our browerAction to be clicked
 chrome.browserAction.onClicked.addListener(toggleState);
+
+// listeresn to external scripts, used for saving access tokens to local storage
+chrome.runtime.onMessageExternal.addListener((request) => {
+  console.log(request);
+
+  // todo: need to customize key for each application
+  chrome.storage.sync.set({ github_access_token: request.access_token }, () => {
+    console.log('saved');
+  });
+});
+
+// listens to listeners from omni
+chrome.runtime.onConnect.addListener((port) => {
+  port.onMessage.addListener((msg) => {
+    if (msg.auth) {
+      // needs to have multiple oauth strategies
+      requestAccess();
+    }
+
+  });
+});
+
+function requestAccess() {
+  chrome.tabs.create({ url: GITHUB_AUTH_URL });
+}
 
 let isActive = false;
 
@@ -12,15 +40,15 @@ function toggleState(tab) {
 
 function activateOmni(tab) {
   chrome.tabs.insertCSS(tab.id, {
-    file: 'style.css'
-  })
+    file: 'style.css',
+  });
   chrome.tabs.executeScript(null, {
-    file: 'content.js'
+    file: 'content.js',
   });
 }
 
-function deactivateOmni(tab) {
+function deactivateOmni() {
   chrome.tabs.executeScript(null, {
-    file: 'removeContent.js'
+    file: 'removeContent.js',
   });
 }
