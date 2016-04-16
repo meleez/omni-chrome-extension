@@ -10,7 +10,7 @@ chrome.runtime.onMessageExternal.addListener((request) => {
   console.log(request);
 
   // todo: need to customize key for each application
-  chrome.storage.sync.set({ github_access_token: request.access_token }, () => {
+  chrome.storage.local.set({ github_access_token: request.access_token }, () => {
     console.log('saved');
   });
 });
