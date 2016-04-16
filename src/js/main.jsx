@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const View = require('./view');
-
+const port = chrome.runtime.connect({ name: 'omni' });
 const packages = {
   i: require('../../examples/search-image'),
   cdn: require('../../examples/cdn'),
@@ -9,7 +9,9 @@ const packages = {
   g: require('../../examples/github/main'),
 };
 
-
+port.onMessage.addListener((msg) => {
+  console.log('response', msg);
+});
 class Omni {
   constructor() {
     this.visible = true;
@@ -17,15 +19,22 @@ class Omni {
     this.div = document.createElement('div');
     this.div.id = 'omni-chrome';
     document.body.appendChild(this.div);
-    console.log('started');
-
     this.render();
   }
 
-  addOauth(options) {
-    this.addItems({
-      title: 'Authenticate with Github',
-      link: `https://github.com/login/oauth/authorize?client_id=${options.client_id}&redirect_url=${options.redirect_url}`,
+  // todo needs to namespace by app later
+  saveCache(key, value, cb) {
+    const obj = {};
+    obj[key] = value;
+    chrome.storage.sync.set(obj, cb);
+  }
+
+  getCache(key, cb) {
+    // todo : prevent null from being passed in - its gets all content in storage
+
+    chrome.storage.sync.get(key, (item) => {
+      console.log(item);
+      cb(item[key]);
     });
   }
 
@@ -51,18 +60,15 @@ class Omni {
   }
 
   onInputChange(keyword, query) {
+    this.removeItems();
     if (keyword in packages && query.length) {
       packages[keyword](this, query);
     } else {
-      console.log('removing');
-      this.removeItems();
-      this.sendFeedback();
+      // this.sendFeedback();
     }
   }
 
   render() {
-    console.log('started');
-    console.log(this.div);
     ReactDOM.render(
       <View
         items={this.items} onInputChange={this.onInputChange.bind(this)}
