@@ -1,16 +1,14 @@
-// function authenticate(omni) {
-//   // omni.addOauth({
-//   //   oauth: "github",
-//   //   client_secret: "a7d4c45e9dc563b07fb5e241f63c5e2f87241828",
-//   //   client_id : "1649235ae4e380dd699c",
-//   //   redirect_url: "http://localhost:1337?client_secret=a7d4c45e9dc563b07fb5e241f63c5e2f87241828&client_id=1649235ae4e380dd699c"
-//   // });
-//   omni.sendFeedback();
-// }
+const GITHUB_REDIRECT_URI = 'http://127.0.0.1:1337/';
+const GITHUB_CLIENT_ID = '1649235ae4e380dd699c';
+const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URI}`;
 
 
 function showOptions(omni) {
-
+  omni.addItems({
+    title: 'Login',
+    link: GITHUB_AUTH_URL,
+  });
+  omni.sendFeedback();
 }
 
 function updateCache(omni) {
@@ -38,7 +36,6 @@ function showItemsInCache(omni, query) {
 }
 
 module.exports = function github(omni, query) {
-  console.log(query);
   if (query && query[0] === '>') return showOptions(omni);
   updateCache(omni);
   showItemsInCache(omni, query);
