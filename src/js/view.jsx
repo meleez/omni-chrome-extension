@@ -42,7 +42,8 @@ class View extends React.Component {
       copy.innerText = '';
       this.props.toggleVisibility();
     }
-    if (selectedObj.link) location.replace(selectedObj.link);
+    // opens new window
+    if (selectedObj.link) window.open(selectedObj.link);
   }
 
   render() {
