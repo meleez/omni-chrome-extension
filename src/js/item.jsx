@@ -20,7 +20,7 @@ class Item extends React.Component {
     }
     return (
       <li style={itemStyle} className="item">
-        <a href={this.props.link} onClick={this.select}>
+        <a target="_blank" href={this.props.link} onClick={this.select}>
           <h4>{ this.props.title }</h4>
           <span className="subtitle">{ this.props.subtitle }</span>
         </a>
