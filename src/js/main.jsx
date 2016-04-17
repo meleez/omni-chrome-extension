@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const View = require('./view');
-const port = chrome.runtime.connect({ name: 'omni' });
+// const port = chrome.runtime.connect({ name: 'omni' });
 const packages = {
   i: require('../../examples/search-image'),
   cdn: require('../../examples/cdn'),
@@ -10,12 +10,8 @@ const packages = {
   d: require('../../examples/google-drive'),
 };
 
-port.onMessage.addListener((msg) => {
-  console.log('response', msg);
-});
 class Omni {
   constructor() {
-    this.visible = true;
     this.items = [];
     this.div = document.createElement('div');
     this.div.id = 'omni-chrome';
