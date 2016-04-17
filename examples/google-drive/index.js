@@ -16,8 +16,7 @@ function showOptions(omni) {
 function updateCache(omni) {
   chrome.storage.local.get('google_access_token', (value) => {
     getFiles(value.google_access_token, (body) => {
-      const items = body.map((item) => ({ title: item.full_name, link: item.html_url }));
-      console.log(items);
+      const items = body.map((item) => ({ title: item.title, link: item.alternateLink }));
       omni.saveCache('google_drive_items', items, () => {
         // omni.addItems(...items);
         // omni.sendFeedback();
@@ -42,9 +41,7 @@ function getFiles(accessToken, cb, prev = [], nextPageToken = null) {
 
 function showItemsInCache(omni, query) {
   omni.getCache('google_drive_items', (items) => {
-    console.log(items);
-    omni.addItems(...items.filter((item) =>
-      item.title.toLowerCase().indexOf(query.toLowerCase()) >= 0));
+    omni.addItems(...items.filter((item) => item.title.toLowerCase().indexOf(query.toLowerCase()) >= 0));
     omni.sendFeedback();
   });
 }
@@ -52,7 +49,6 @@ function showItemsInCache(omni, query) {
 module.exports = function github(omni, query) {
   if (query && query[0] === '>') return showOptions(omni);
   if (query.length === 1) updateCache(omni);
-  console.log(query);
   showItemsInCache(omni, query);
 };
 
