@@ -6,7 +6,7 @@ const packages = {
   i: require('../../examples/search-image'),
   cdn: require('../../examples/cdn'),
   dist: require('../../examples/distance-matrix'),
-  g: require('../../examples/github/main'),
+  g: require('../../examples/github'),
 };
 
 port.onMessage.addListener((msg) => {
