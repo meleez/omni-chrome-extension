@@ -14,7 +14,7 @@ class View extends React.Component {
   onInputChange(event) {
     const input = event.target.value.split(' ');
     const [keyword, ...query] = input;
-    this.props.onInputChange(keyword, query);
+    this.props.onInputChange(keyword, query.join(''));
   }
 
   onInputKeyPress(event) {
@@ -42,7 +42,8 @@ class View extends React.Component {
       copy.innerText = '';
       this.props.toggleVisibility();
     }
-    if (selectedObj.link) location.replace(selectedObj.link);
+    // opens new window
+    if (selectedObj.link) window.open(selectedObj.link);
   }
 
   render() {
@@ -52,10 +53,11 @@ class View extends React.Component {
         index={i} active={this.state.active} select={this.select}
       />
     );
+    // todo: move back down
+    // <link href={chrome.extension.getURL('style.css')} />
 
     return (
       <div id="omni-chrome-container">
-        <link href={chrome.extension.getURL('style.css')} />
         <div className="main-pane">
           <input
             id="omni-chrome-input" type="text" autoFocus ref="omniChromeInput"
