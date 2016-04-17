@@ -34,8 +34,7 @@
         "chromeos": "Ctrl+Shift+U",
         "linux": "Ctrl+Shift+J"
       },
-      "description" : "Activate OMNI",
-      "global" : true
+      "description" : "Activate OMNI"
     }
   }
 }
