@@ -16,7 +16,6 @@ function updateCache(omni) {
     getRepos(value.github_access_token)
     .then((body) => {
       const items = body.map((item) => ({ title: item.full_name, link: item.html_url }));
-      console.log(items.length);
       omni.saveCache('github_items', items, () => {
         // omni.addItems(...items);
         // omni.sendFeedback();
@@ -32,6 +31,7 @@ function getRepos(accessToken, prev = [], page = 1) {
   })
   .then((response) => (response.json()))
   .then((body) => {
+    console.log('body',body);
     if (body.length === 100) return getRepos(accessToken, body, page + 1);
     return body.concat(prev);
   });
