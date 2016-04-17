@@ -7,6 +7,7 @@ const packages = {
   cdn: require('../../examples/cdn'),
   dist: require('../../examples/distance-matrix'),
   g: require('../../examples/github'),
+  d: require('../../examples/google-drive'),
 };
 
 port.onMessage.addListener((msg) => {

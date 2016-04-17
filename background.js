@@ -7,21 +7,18 @@ chrome.browserAction.onClicked.addListener(toggleState);
 
 // listeresn to external scripts, used for saving access tokens to local storage
 chrome.runtime.onMessageExternal.addListener((request) => {
-  console.log(request);
-
-  let storageObj = {};
+  const storageObj = {};
 
   // todo: need to customize key for each application
   switch (request.type) {
     case 'github':
-      storageObj['github_access_token'] = request.access_token;
+      storageObj.github_access_token = request.access_token;
       break;
     case 'google':
-      storageObj['google_access_token'] = request.access_token;
+      storageObj.google_access_token = request.access_token;
       break;
     default:
       console.log('not supported auth strategies');
-    }
   }
 
   chrome.storage.local.set(storageObj, () => {
@@ -36,7 +33,6 @@ chrome.runtime.onConnect.addListener((port) => {
       // needs to have multiple oauth strategies
       // requestAccess();
     }
-
   });
 });
 
