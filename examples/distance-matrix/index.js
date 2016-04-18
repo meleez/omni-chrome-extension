@@ -1,9 +1,9 @@
 module.exports = function distance(omni, query) {
   let url = 'https://maps.googleapis.com/maps/api/distancematrix/json?key=AIzaSyAuiZisbOWOaO9ZM2zMxWvZDOjKw5joAg8';
-  navigator.geolocation.getCurrentPosition(pos => {
-    const { latitude, longitude } = pos.coords;
+  omni.getLocation(coords => {
+    const { latitude, longitude } = coords;
     url += `&origins=${latitude},${longitude}`;
-    url += `&destinations=${query.join('+')}`;
+    url += `&destinations=${query.split(' ').join('+')}`;
     let link = 'https://www.google.com/maps/dir/';
     fetch(url).then(results =>
       results.json()
@@ -16,7 +16,6 @@ module.exports = function distance(omni, query) {
       const miles = (meters * 0.000621371).toFixed(1);
       const duration = data.duration.text;
       link += `${src}/${dest}`;
-      console.log(link);
       omni.removeItems();
       omni.addItems({
         title: `${duration} - ${kilometers} km (${miles} mi)`,

@@ -1,5 +1,5 @@
 module.exports = function cdn(omni, query) {
-  fetch(`https://api.cdnjs.com/libraries?search=${query[0]}&fields=version,description`)
+  fetch(`https://api.cdnjs.com/libraries?search=${query}&fields=version,description`)
     .then(res =>
       res.json()
     )

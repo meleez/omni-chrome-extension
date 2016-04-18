@@ -15,6 +15,18 @@ chrome.runtime.onMessageExternal.addListener((request) => {
   });
 });
 
+chrome.runtime.onMessage.addListener((message, sender, respond) => {
+  if (message.message === 'location') {
+    navigator.geolocation.getCurrentPosition(pos => {
+      respond({
+        latitude: pos.coords.latitude,
+        longitude: pos.coords.longitude,
+      });
+    });
+  }
+  return true;
+});
+
 // listens to listeners from omni
 chrome.runtime.onConnect.addListener((port) => {
   port.onMessage.addListener((msg) => {
@@ -22,7 +34,6 @@ chrome.runtime.onConnect.addListener((port) => {
       // needs to have multiple oauth strategies
       requestAccess();
     }
-
   });
 });
 

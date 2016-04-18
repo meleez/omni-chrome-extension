@@ -4,10 +4,10 @@
   "description": "An extensible launcher for Chrome to improve your workflow.",
   "version": "0.0",
   "permissions": [
-    "https://*/*",
-    "http://*/*",
+    "<all_urls>",
     "tabs",
-    "storage"
+    "storage",
+    "geolocation"
   ],
   "icons": {
     "16": "icons/icon-16.png",

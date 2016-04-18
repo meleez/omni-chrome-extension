@@ -1,6 +1,6 @@
 module.exports = function searchImage(omni, query) {
   omni.removeItems();
-  const phrase = query[0];
+  const phrase = query;
   if (phrase) {
     omni.addItems(
       { title: phrase, link: imgLink(phrase), subtitle: `Search Google images for "${phrase}".` }
