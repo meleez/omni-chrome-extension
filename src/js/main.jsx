@@ -40,6 +40,10 @@ class Omni {
     });
   }
 
+  getLocation(done) {
+    chrome.runtime.sendMessage({ message: 'location' }, done);
+  }
+
   addItems(...items) {
     this.items.push(...items);
   }
