@@ -41,14 +41,17 @@ function requestAccess() {
 }
 
 let isActive = false;
+console.log(isActive);
 
 function toggleState(tab) {
-  if (!isActive) activateOmni(tab);
-  else deactivateOmni(tab);
+  console.log('clicked');
+  if (!isActive) { activateOmni(tab); }
+  else { deactivateOmni(tab); }
   isActive = !isActive;
 }
 
 function activateOmni(tab) {
+  console.log('activate');
   chrome.tabs.insertCSS(tab.id, {
     file: 'style.css',
   });
@@ -58,6 +61,7 @@ function activateOmni(tab) {
 }
 
 function deactivateOmni() {
+  console.log('deactivate');
   chrome.tabs.executeScript(null, {
     file: 'removeContent.js',
   });
