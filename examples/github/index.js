@@ -14,7 +14,10 @@ function updateCache(omni) {
   chrome.storage.local.get('github_access_token', (value) => {
     getRepos(value.github_access_token)
     .then((body) => {
-      const items = body.map((item) => ({ title: item.full_name, link: item.html_url }));
+      const items = body.map((item) => ({
+        title: item.full_name,
+        link: item.html_url,
+      }));
       omni.saveCache('github_items', items, () => {
         // omni.addItems(...items);
         // omni.sendFeedback();
@@ -30,8 +33,8 @@ function getRepos(accessToken, prev = [], page = 1) {
   })
   .then((response) => (response.json()))
   .then((body) => {
-    if (body.length === 100) return getRepos(accessToken, body, page + 1);
-    return body.concat(prev);
+    if (body.length === 100) return getRepos(accessToken, prev.concat(body), page + 1);
+    return prev.concat(body);
   });
 }
 
@@ -48,4 +51,3 @@ module.exports = function github(omni, query) {
   updateCache(omni);
   showItemsInCache(omni, query);
 };
-

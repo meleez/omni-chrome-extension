@@ -16,7 +16,10 @@ function showOptions(omni) {
 function updateCache(omni) {
   chrome.storage.local.get('google_access_token', (value) => {
     getFiles(value.google_access_token, (body) => {
-      const items = body.map((item) => ({ title: item.title, link: item.alternateLink }));
+      const items = body.map((item) => ({
+        title: item.title,
+        link: item.alternateLink,
+      }));
       omni.saveCache('google_drive_items', items, () => {
         // omni.addItems(...items);
         // omni.sendFeedback();
@@ -30,12 +33,14 @@ function getFiles(accessToken, cb, prev = [], nextPageToken = null) {
   xhr.open('GET', nextPageToken ? GOOGLE_DRIVE_URL + `&pageToken=${nextPageToken}` : GOOGLE_DRIVE_URL);
   xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`);
   xhr.send();
-  xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4) {
-        const body = JSON.parse(xhr.responseText);
-        if (body.nextPageToken) return getFiles(accessToken, cb, prev.concat(body.items), body.nextPageToken);
-        cb(prev.concat(body.items));
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4) {
+      const body = JSON.parse(xhr.responseText);
+      if (body.nextPageToken) {
+        return getFiles(accessToken, cb, prev.concat(body.items), body.nextPageToken);
       }
+      cb(prev.concat(body.items));
+    }
   };
 }
 
@@ -51,4 +56,3 @@ module.exports = function github(omni, query) {
   if (query.length === 1) updateCache(omni);
   showItemsInCache(omni, query);
 };
-
