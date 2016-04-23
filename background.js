@@ -1,7 +1,3 @@
-const GITHUB_REDIRECT_URI = 'http://127.0.0.1:1337/';
-const GITHUB_CLIENT_ID = '1649235ae4e380dd699c';
-const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URI}`;
-
 // listen for our browerAction to be clicked
 chrome.browserAction.onClicked.addListener(toggleState);
 
@@ -26,6 +22,7 @@ chrome.runtime.onMessageExternal.addListener((request) => {
   });
 });
 
+// listen for geolocation requests
 chrome.runtime.onMessage.addListener((message, sender, respond) => {
   if (message.message === 'location') {
     navigator.geolocation.getCurrentPosition(pos => {
@@ -38,32 +35,16 @@ chrome.runtime.onMessage.addListener((message, sender, respond) => {
   return true;
 });
 
-// listens to listeners from omni
-chrome.runtime.onConnect.addListener((port) => {
-  port.onMessage.addListener((msg) => {
-    if (msg.auth) {
-      // needs to have multiple oauth strategies
-      // requestAccess();
-    }
-  });
-});
-
-function requestAccess() {
-  chrome.tabs.create({ url: GITHUB_AUTH_URL });
-}
 
 let isActive = false;
-console.log(isActive);
 
 function toggleState(tab) {
-  console.log('clicked');
-  if (!isActive) { activateOmni(tab); }
-  else { deactivateOmni(tab); }
+  if (!isActive) activateOmni(tab);
+  else deactivateOmni(tab);
   isActive = !isActive;
 }
 
 function activateOmni(tab) {
-  console.log('activate');
   chrome.tabs.insertCSS(tab.id, {
     file: 'style.css',
   });
@@ -73,7 +54,6 @@ function activateOmni(tab) {
 }
 
 function deactivateOmni() {
-  console.log('deactivate');
   chrome.tabs.executeScript(null, {
     file: 'removeContent.js',
   });

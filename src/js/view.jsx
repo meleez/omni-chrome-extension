@@ -26,8 +26,10 @@ class View extends React.Component {
       return this.props.toggleVisibility();
     }
     if (event.keyCode === 38) { // up arrow
+      event.preventDefault();
       active = Math.max(0, active - 1);
     } else if (event.keyCode === 40) { // down arrow
+      event.preventDefault();
       active = Math.min(this.props.items.length - 1, active + 1);
     }
     this.setState({ active });
