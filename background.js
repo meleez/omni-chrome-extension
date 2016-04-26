@@ -1,6 +1,7 @@
+// note to self, mocha does not support let
+
 // listen for our browerAction to be clicked
 chrome.browserAction.onClicked.addListener(toggleState);
-
 // listeresn to external scripts, used for saving access tokens to local storage
 chrome.runtime.onMessageExternal.addListener((request) => {
   const storageObj = {};
@@ -39,7 +40,9 @@ chrome.runtime.onMessage.addListener((message, sender, respond) => {
 
 // tabId, id of new tab
 // windowId, id of prev tab
-chrome.tabs.onActivated.addListener(({tabId, windowId}) => {
+chrome.tabs.onActivated.addListener((activeInfo) => {
+  // cannot destructure in params cause test does not support
+  var tabId, windowId = activeInfo;
   if (currTabId) deactivateOmni(currTabId);
 });
 
@@ -48,11 +51,8 @@ chrome.windows.onFocusChanged.addListener((windowId) => {
   if (currTabId) deactivateOmni(currTabId);
 });
 
-
-
-
-let isActive = false;
-let currTabId;
+var isActive = false;
+var currTabId;
 
 function toggleState(tab) {
   if (!isActive) activateOmni(tab.id);
