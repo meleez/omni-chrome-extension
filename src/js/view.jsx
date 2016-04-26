@@ -45,7 +45,9 @@ class View extends React.Component {
       this.props.toggleVisibility();
     }
     // opens new window
-    if (selectedObj.link) window.open(selectedObj.link);
+    if (selectedObj.link) {
+      window.open(selectedObj.link);
+    }
   }
 
   render() {

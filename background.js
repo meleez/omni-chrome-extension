@@ -24,6 +24,8 @@ chrome.runtime.onMessageExternal.addListener((request) => {
 
 // listen for geolocation requests
 chrome.runtime.onMessage.addListener((message, sender, respond) => {
+  if (message.message === 'toggle') toggleState();
+
   if (message.message === 'location') {
     navigator.geolocation.getCurrentPosition(pos => {
       respond({
@@ -35,26 +37,38 @@ chrome.runtime.onMessage.addListener((message, sender, respond) => {
   return true;
 });
 
+// tabId, id of new tab
+// windowId, id of prev tab
+chrome.tabs.onActivated.addListener(({tabId, windowId}) => {
+  console.log(tabId, windowId);
+  if (currTabId) deactivateOmni(currTabId);
+});
+
 
 let isActive = false;
+let currTabId;
 
 function toggleState(tab) {
-  if (!isActive) activateOmni(tab);
-  else deactivateOmni(tab);
-  isActive = !isActive;
+  if (!isActive) activateOmni(tab.id);
+  else deactivateOmni(tab.id);
 }
 
-function activateOmni(tab) {
-  chrome.tabs.insertCSS(tab.id, {
+function activateOmni(tabId) {
+  if (!tabId) return;
+  currTabId = tabId;
+  isActive = true;
+  chrome.tabs.insertCSS(tabId, {
     file: 'style.css',
   });
-  chrome.tabs.executeScript(null, {
+  chrome.tabs.executeScript(tabId, {
     file: 'content.js',
   });
 }
 
-function deactivateOmni() {
-  chrome.tabs.executeScript(null, {
+function deactivateOmni(tabId) {
+  if (!tabId) return;
+  isActive = false;
+  chrome.tabs.executeScript(tabId, {
     file: 'removeContent.js',
   });
 }
