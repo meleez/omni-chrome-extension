@@ -40,9 +40,15 @@ chrome.runtime.onMessage.addListener((message, sender, respond) => {
 // tabId, id of new tab
 // windowId, id of prev tab
 chrome.tabs.onActivated.addListener(({tabId, windowId}) => {
-  console.log(tabId, windowId);
   if (currTabId) deactivateOmni(currTabId);
 });
+
+chrome.windows.onFocusChanged.addListener((windowId) => {
+  console.log('onFocusChanged');
+  if (currTabId) deactivateOmni(currTabId);
+});
+
+
 
 
 let isActive = false;
@@ -67,6 +73,7 @@ function activateOmni(tabId) {
 
 function deactivateOmni(tabId) {
   if (!tabId) return;
+  currTabId = null;
   isActive = false;
   chrome.tabs.executeScript(tabId, {
     file: 'removeContent.js',
