@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "OmniChrome",
   "description": "An extensible launcher for Chrome to improve your workflow.",
-  "version": "0.0",
+  "version": "0.1",
   "permissions": [
     "<all_urls>",
     "tabs",
@@ -15,7 +15,8 @@
     "128": "icons/icon-128.png"
   },
   "background" : {
-    "scripts" : ["background.js"]
+    "scripts" : ["background.js"],
+    "persistent" : false
   },
   "web_accessible_resources": [
     "style.css"
