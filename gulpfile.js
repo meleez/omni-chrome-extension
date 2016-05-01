@@ -7,6 +7,7 @@ var notify = require('gulp-notify');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
+var envify = require('envify/custom');
 
 gulp.task('default', ['script-dev', 'sass-dev', 'sass-watch']);
 gulp.task('build', ['script', 'sass']);

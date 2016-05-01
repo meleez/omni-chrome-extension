@@ -10,6 +10,21 @@ function showOptions(omni) {
     title: 'Login',
     link: GOOGLE_AUTH_URL,
   });
+
+  omni.addItems({
+    title: 'Logout',
+    onActivated: function onActivated() {
+      console.log('active');
+      chrome.storage.local.remove(['google_access_token', 'google_drive_items'], () => {
+        omni.showNotification({
+          title: 'Google Drive',
+          message: 'Logout Successful',
+          iconUrl: './examples/google-drive/logo.png',
+        });
+      });
+    },
+  });
+
   omni.sendFeedback();
 }
 
