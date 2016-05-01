@@ -46,7 +46,7 @@ gulp.task('script', () => buildScript('main.jsx', false));
 gulp.task('script-remove', () => buildRemoveScript('remove.jsx', true));
 
 function buildScript(file, watch) {
-  var REDIRECT_URI = watch ? 'http://localhost:1337' : 'http://mytrace.io';
+  var REDIRECT_URI = watch ? 'http://127.0.0.1:1337' : 'http://mytrace.io';
 
   var props = {
     entries: ['src/js/' + file],

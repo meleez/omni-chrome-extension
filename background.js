@@ -8,7 +8,6 @@ chrome.runtime.onMessageExternal.addListener((request) => {
   let title;
   let message;
   let iconUrl;
-
   // todo: need to customize key for each application
   switch (request.type) {
     case 'github':

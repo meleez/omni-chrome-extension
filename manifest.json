@@ -26,7 +26,8 @@
     "default_title" : "OMNI"
   },
   "externally_connectable": {
-    "matches": ["http://127.0.0.1/*",
+    "matches": [
+    "http://127.0.0.1/*",
     "http://mytrace.io/*"]
   },
   "commands" : {
