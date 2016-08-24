@@ -2,12 +2,13 @@
   "manifest_version": 2,
   "name": "OmniChrome",
   "description": "An extensible launcher for Chrome to improve your workflow.",
-  "version": "0.0",
+  "version": "0.2",
   "permissions": [
     "<all_urls>",
     "tabs",
     "storage",
-    "geolocation"
+    "geolocation",
+    "notifications"
   ],
   "icons": {
     "16": "icons/icon-16.png",
@@ -15,7 +16,8 @@
     "128": "icons/icon-128.png"
   },
   "background" : {
-    "scripts" : ["background.js"]
+    "scripts" : ["background.js"],
+    "persistent" : false
   },
   "web_accessible_resources": [
     "style.css"
@@ -24,7 +26,9 @@
     "default_title" : "OMNI"
   },
   "externally_connectable": {
-    "matches": ["http://127.0.0.1/*"]
+    "matches": [
+    "http://127.0.0.1/*",
+    "http://mytrace.io/*"]
   },
   "commands" : {
     "_execute_browser_action": {

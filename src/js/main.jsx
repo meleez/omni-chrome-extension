@@ -1,3 +1,4 @@
+window.fetch = require('whatwg-fetch');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const View = require('./view');
@@ -37,8 +38,17 @@ class Omni {
     });
   }
 
+  // notification {title, message, icon}
+  showNotification(notificationObj) {
+    // todo add action property to notificaton
+    const message = { action: 'notification' };
+    Object.assign(message, notificationObj);
+    console.log('sending message');
+    chrome.runtime.sendMessage(message);
+  }
+
   getLocation(done) {
-    chrome.runtime.sendMessage({ message: 'location' }, done);
+    chrome.runtime.sendMessage({ action: 'location' }, done);
   }
 
   addItems(...items) {
