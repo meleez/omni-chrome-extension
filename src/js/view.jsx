@@ -37,6 +37,7 @@ class View extends React.Component {
 
   select(selectedIndex) {
     const selectedObj = this.props.items[selectedIndex];
+    console.log(selectedObj);
     if (selectedObj.clipboard) {
       const copy = this.refs.copyField;
       copy.innerText = selectedObj.clipboard;
@@ -44,10 +45,14 @@ class View extends React.Component {
       copy.innerText = '';
       this.props.toggleVisibility();
     }
-    // opens new window
     if (selectedObj.link) {
       window.open(selectedObj.link);
     }
+    console.log(selectedObj.onActivated);
+    if (selectedObj.onActivated) {
+      selectedObj.onActivated();
+    }
+    // todo: toggle off omni
   }
 
   render() {

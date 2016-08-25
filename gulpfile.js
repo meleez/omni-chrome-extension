@@ -7,6 +7,7 @@ var notify = require('gulp-notify');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
+var envify = require('envify/custom');
 
 gulp.task('default', ['script-dev', 'sass-dev', 'sass-watch']);
 gulp.task('build', ['script', 'sass']);
@@ -45,12 +46,14 @@ gulp.task('script', () => buildScript('main.jsx', false));
 gulp.task('script-remove', () => buildRemoveScript('remove.jsx', true));
 
 function buildScript(file, watch) {
+  var REDIRECT_URI = watch ? 'http://127.0.0.1:1337' : 'http://mytrace.io';
 
   var props = {
     entries: ['src/js/' + file],
     debug: watch,
     transform: [
-      ['babelify', { presets: ['es2015', 'react'] }],
+      ['babelify', { presets: ['es2015', 'react'] }], 
+      ['envify', { REDIRECT_URI }],
     ],
     extensions: ['.jsx', '.js'],
   };

@@ -1,4 +1,5 @@
-const GITHUB_REDIRECT_URI = 'http://127.0.0.1:1337/github';
+// const GITHUB_REDIRECT_URI = 'http://mytrace.io/github';
+const GITHUB_REDIRECT_URI = `${process.env.REDIRECT_URI}/github`;
 const GITHUB_CLIENT_ID = '1649235ae4e380dd699c';
 const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URI}&scope=repo`;
 
