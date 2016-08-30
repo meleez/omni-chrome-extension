@@ -9,6 +9,7 @@ const packages = {
   dist: require('../../examples/distance-matrix'),
   g: require('../../examples/github'),
   d: require('../../examples/google-drive'),
+  b64: require('../../examples/base64'),
 };
 
 class Omni {
